@@ -1,7 +1,6 @@
-# core/app.py
 import os
 from scanner.network_scanner import NetworkScanner
-from alert.alert_manager import build_alerts, send_consolidated_alerts
+from notifications.alert_manager import build_alerts, send_consolidated_alerts
 from report.report_factory import get_reporter
 from utils.summary_manager import update_weekly_summary
 from utils.logger import get_logger

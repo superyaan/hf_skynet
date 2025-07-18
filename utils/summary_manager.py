@@ -3,7 +3,7 @@ import json
 import os
 from datetime import datetime
 from utils.logger import get_logger
-from alert.email_alert import EmailAlert
+from notifications.email_alert import EmailAlert
 
 logger = get_logger(__name__)
 

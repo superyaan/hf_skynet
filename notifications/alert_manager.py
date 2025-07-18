@@ -1,5 +1,4 @@
-# alert/alert_manager.py
-from alert.email_alert import EmailAlert
+from notifications.email_alert import EmailAlert
 
 def build_alerts(results, latency_threshold):
     """Return list of devices to alert on."""
