@@ -35,13 +35,14 @@ Skynet is a modular, Python-based tool developed for **Hein+Fricke** to monitor 
 ## 📂 Project Structure
 
 ```
-hf_network_monitor/
+hf_skynet/
 ├── README.md
 ├── main.py                     # Entry point
+├── run_scheduler.py            # Scheduler script to run main app periodically
 ├── config.json                 # Configuration (IP range, email settings)
 ├── requirements.txt
 │
-├── core/
+├── app/
 │   └── app.py                  # Orchestrates scan → report → alerts → summary
 │
 ├── utils/
@@ -59,7 +60,7 @@ hf_network_monitor/
 │   ├── json_reporter.py        # JSON report
 │   └── report_factory.py       # Factory to select report type
 │
-├── alert/
+├── notifications/
 │   ├── email_alert.py          # Email sending logic
 │   └── alert_manager.py        # Consolidated alert handling
 │
@@ -69,8 +70,6 @@ hf_network_monitor/
 │
 ├── logs/                       # Timestamped log files
 │   └── scan_YYYY-MM-DD_HH-MM-SS.log
-│
-├── run_scheduler.py              # Scheduler script to run main app periodically
 │
 └── mac-vendors.txt             # MAC vendor reference
 ```
