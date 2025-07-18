@@ -1,2 +1,2 @@
-netifaces
-schedule
+netifaces>=0.11.0
+schedule>=1.1.0
