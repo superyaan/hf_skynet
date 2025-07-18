@@ -18,6 +18,9 @@ Skynet is a modular, Python-based tool developed for **Hein+Fricke** to monitor 
   - MAC Address + Vendor lookup
   - Latency measurement (ms)
   - Open Ports (configurable)
+- **Automated Scheduling**:
+  - Use `run_scheduler.py` to auto-run the scan every 15 minutes (or custom interval)
+  - Leverages Python's `schedule` library
 
 ### Reporting & Alerts
 - **Professional reports** in multiple formats (HTML, CSV, JSON)
@@ -66,6 +69,8 @@ hf_network_monitor/
 │
 ├── logs/                       # Timestamped log files
 │   └── scan_YYYY-MM-DD_HH-MM-SS.log
+│
+├── run_scheduler.py              # Scheduler script to run main app periodically
 │
 └── mac-vendors.txt             # MAC vendor reference
 ```
@@ -123,7 +128,7 @@ Edit `config.json` to customize your network monitoring setup:
 | `email.smtp_server` | SMTP server address | `smtp.gmail.com` |
 | `email.smtp_port` | SMTP port | `587` |
 | `report_format` | Output format | `html` |
-| `ports_to_check` | Ports to scan | `[22, 80, 443]` |
+| `ports_to_check` | Ports to scan | `[22, 80, 443, 3389]` |
 
 ---
 
