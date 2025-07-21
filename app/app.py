@@ -2,6 +2,7 @@ import os
 from scanner.network_scanner import NetworkScanner
 from notifications.alert_manager import build_alerts, send_consolidated_alerts
 from report.report_factory import get_reporter
+from utils.daily_summary_manager import update_daily_stats
 from utils.summary_manager import update_weekly_summary
 from utils.logger import get_logger
 
@@ -29,7 +30,10 @@ def run_scan_cycle(config):
     else:
         logger.info("No alert conditions detected.")
 
-    # 4. Update weekly summary
+    # 4. Daily high-latency stats
+    update_daily_stats(results, latency_threshold=config['latency_threshold'])
+
+    # 5. Update weekly summary
     update_weekly_summary(results)
     logger.info("Weekly summary data updated.")
     logger.info("Scan cycle complete.")

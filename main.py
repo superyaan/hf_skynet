@@ -2,6 +2,7 @@ import sys
 from utils.logger import get_logger
 from utils.cli import parse_args, apply_overrides
 from utils.config_loader import load_config
+from utils.daily_summary_manager import send_daily_summary 
 from utils.summary_manager import send_weekly_summary
 from app.app import run_scan_cycle
 
@@ -10,6 +11,11 @@ logger = get_logger(__name__)
 def main():
     args = parse_args()
     config = apply_overrides(load_config(), args)
+
+    # Daily summary shortcut
+    if args.daily_summary:
+        send_daily_summary(config)
+        return
 
     # Weekly summary mode
     if args.weekly_summary:

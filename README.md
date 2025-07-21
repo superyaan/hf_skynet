@@ -48,6 +48,7 @@ hf_skynet/
 ├── utils/
 │   ├── cli.py                  # CLI argument parser
 │   ├── config_loader.py        # Config file loader
+│   ├── daily_summary_manager.py# Daily Summary Logic
 │   ├── logger.py               # Logging setup
 │   └── summary_manager.py      # Weekly summary logic
 │
@@ -250,6 +251,78 @@ Skynet follows **SOLID principles** and uses **Object-Oriented Programming** for
 3. Make your changes
 4. Add tests
 5. Submit a pull request
+
+---
+
+## (NEW UPDATE)
+## 📊 Daily Summary Feature
+
+Skynet now includes a **Daily High Latency Summary** feature for comprehensive 24-hour monitoring and reporting.
+
+### 🎯 What It Does
+
+- **Continuous Monitoring**: Tracks all devices across **96 scans per day** (every 15 minutes)
+- **Intelligent Analysis**: Identifies devices that crossed the **latency threshold** at least once
+- **Comprehensive Aggregation**:
+  - Total scans performed during the day
+  - Unique devices detected
+  - Devices with high latency incidents
+  - Frequency count of high latency events per device
+  - Maximum latency observed per device
+  - First seen / Last seen timestamps for each device
+
+### 📧 Daily Summary Email
+
+Automated daily reporting delivered once per day (typically at 23:59 or on custom schedule):
+
+- **Summary Dashboard**: Professional HTML table of all high-latency devices
+- **Event Analytics**: Count of high-latency incidents per device
+- **Performance Metrics**: Maximum latency recorded per device
+- **Historical Context**: Timeline of device availability
+
+### 🚀 How To Use
+
+#### 1️⃣ Continuous Monitoring
+Run automated scans every 15 minutes using the scheduler:
+```bash
+python run_scheduler.py
+```
+
+#### 2️⃣ Generate Daily Summary
+At the end of each day, send the comprehensive summary:
+```bash
+python main.py --daily-summary
+```
+*This can be automated via cron (Linux/macOS) or Task Scheduler (Windows)*
+
+### 🔧 Automation Setup
+
+#### Linux/macOS (Crontab)
+```bash
+# Add to crontab for daily summary at 23:59
+59 23 * * * /path/to/venv/bin/python /path/to/skynet/main.py --daily-summary
+```
+
+#### Windows (Task Scheduler)
+Create a daily task running at 23:59:
+```cmd
+Program: python
+Arguments: main.py --daily-summary
+Start in: C:\path\to\skynet\
+```
+
+### 📁 Data Storage
+
+Daily summaries are stored in structured JSON format:
+```
+reports/daily_YYYY-MM-DD.json
+```
+
+**What the Daily Summary Does:**
+1. Aggregates data from all 96 daily scan reports
+2. Generates HTML email with detailed high-latency device analysis  
+3. Archives daily summary JSON for historical reference
+4. Provides actionable insights for network performance optimization
 
 ---
 

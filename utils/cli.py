@@ -8,6 +8,7 @@ def parse_args():
     parser.add_argument('--format', choices=['html', 'csv', 'json'], help='Output report format')
     parser.add_argument('--self', dest='self_scan', action='store_true', help='Scan only this machine')
     parser.add_argument('--weekly-summary', action='store_true', help='Send weekly summary email')
+    parser.add_argument('--daily-summary', action='store_true', help='Send daily high-latency summary email')
     return parser.parse_args()
 
 def apply_overrides(config, args):
